@@ -18,7 +18,7 @@ def compute_SSE(data, labels):
     Returns:
     - sse: the sum of squared errors
     """
-    # ADD STUDENT CODE
+    
     sse = 0.0
     for i in np.unique(labels):
         cluster_points = data[labels == i]
@@ -361,7 +361,7 @@ def gaussian_mixture():
     # --------------------------------------------------------------
     # 10 trials of 10,000 points each
     nb_trials = 10
-    nb_samples = 10000
+    nb_samples = 5000
     max_iter = max_iter
 
     means_lst = []
@@ -441,10 +441,11 @@ def gaussian_mixture():
 
     # Return a list of 10 ARIs (float), one for each sample of 5,000 points
     answers["ARI"] = ARI_lst
+    print(f"{ARI_lst=}")
 
     # Return a list of 10 SSEs (float), one for each sample of 5,000 points
     answers["SSE"] = SSE_lst
-    # print(f"{SSE_lst=}")
+    print(f"{SSE_lst=}")
 
     # Return the mean and standard deviation of the 10 trials (of 5000 points each)
     answers["avg_std_ARI"] = [avg_ARI, std_ARI]
