@@ -272,8 +272,8 @@ def spectral_clustering():
     # Apply the best sigma to other data slices
     for i in range(5):
         params = {"sigma": best_sigma, "k": 5}
-        data_slice = data[5000*i:5000*(i+1)]
-        label_slice = labels[5000*i:5000*(i+1)]
+        data_slice = data[1000*i:1000*(i+1)]
+        label_slice = labels[1000*i:1000*(i+1)]
         _, SSE, ARI, _ = spectral(data_slice, label_slice, params)
         all_ARIs.append(ARI)
         all_SSEs.append(SSE)
