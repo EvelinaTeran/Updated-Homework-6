@@ -240,6 +240,10 @@ def jarvis_patrick_clustering():
 
     plt.show()
         
+    
+    answers["cluster scatterplot with largest ARI"] = plot_ARI
+    answers["cluster scatterplot with smallest SSE"] = plot_SSE
+    
     # Group parameters and results
     groups = {f'Group {i}': {'sigma': k, 'xi': smin, 'SSE': SSE, 'ARI': ARI}
               for i, (k, smin, SSE, ARI) in enumerate(results)}
