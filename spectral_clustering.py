@@ -205,7 +205,7 @@ def spectral_clustering():
 
     for i, sigma in enumerate(sigmas):
         params = {"sigma": sigma, "k": 5}
-        computed_labels, SSE, ARI, eigenvalues = spectral(data[:5000], labels[:5000], params)
+        computed_labels, SSE, ARI, eigenvalues = spectral(data[:1000], labels[:1000], params)
         
         # # Plot the results
         # plot_clusters(data[:5000], computed_labels, title='Spectral Clustering Results')

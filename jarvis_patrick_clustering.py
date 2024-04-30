@@ -199,7 +199,7 @@ def jarvis_patrick_clustering():
     for k in k_values:
         for smin in smin_values:
             params_dict = {'k': k, 'smin': smin}
-            computed_labels, SSE, ARI = jarvis_patrick(data[0:5000], labels_true[0:5000], params_dict)
+            computed_labels, SSE, ARI = jarvis_patrick(data[0:1000], labels_true[0:1000], params_dict)
             results.append((k, smin, SSE, ARI))
             
             # # Plot clustering after each run

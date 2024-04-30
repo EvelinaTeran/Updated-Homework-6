@@ -3,9 +3,41 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 #from sklearn.metrics import confusion_matrix
+from scipy.sparse import coo_matrix
 
 # ----------------------------------------------------------------------
 
+def confusion_matrix(y_true, y_pred, labels=None):
+    """
+    Generate a confusion matrix for classification results.
+    
+    Parameters:
+        y_true (numpy.ndarray): Ground truth (correct) target values.
+        y_pred (numpy.ndarray): Estimated targets as returned by a classifier.
+        labels (list, optional): List of labels to index the matrix. This may be used to reorder
+                                 or select a subset of labels. If None is given, those that appear
+                                 at least once in y_true or y_pred are used in sorted order.
+    
+    Returns:
+        numpy.ndarray: A confusion matrix of shape (n_labels, n_labels), where n_labels
+                       is the number of labels, and each element at (i, j) represents
+                       the number of instances of class i predicted as class j.
+    """
+    if labels is None:
+        labels = np.unique(np.concatenate((y_true, y_pred)))
+    label_to_index = {label: idx for idx, label in enumerate(labels)}
+
+    # Convert labels to indexes
+    true_idx = np.array([label_to_index[label] for label in y_true])
+    pred_idx = np.array([label_to_index[label] for label in y_pred])
+
+    # Create a sparse matrix from true_idx and pred_idx
+    n_labels = len(labels)
+    conf_matrix = coo_matrix((np.ones(true_idx.size, dtype=int),
+                              (true_idx, pred_idx)),
+                             shape=(n_labels, n_labels),
+                             dtype=int).toarray()
+    return conf_matrix
 
 def compute_SSE(data, labels):
     """
