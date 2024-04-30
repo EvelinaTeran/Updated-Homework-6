@@ -202,9 +202,9 @@ def jarvis_patrick_clustering():
             computed_labels, SSE, ARI = jarvis_patrick(data[0:5000], labels_true[0:5000], params_dict)
             results.append((k, smin, SSE, ARI))
             
-            # Plot clustering after each run
-            plot_title = f'Clustering (k={k}, smin={smin})'
-            plot_clustering(data[0:5000], computed_labels, plot_title)
+            # # Plot clustering after each run
+            # plot_title = f'Clustering (k={k}, smin={smin})'
+            # plot_clustering(data[0:5000], computed_labels, plot_title)
 
     # Create a dictionary for each parameter pair ('sigma' and 'xi').
     groups = {}
@@ -268,8 +268,8 @@ def jarvis_patrick_clustering():
     ARIs = []
     SSEs = []
     for i in range(5):
-        data_slice = data[i * 5000:(i + 1) * 5000]
-        labels_slice = labels_true[i * 5000:(i + 1) * 5000]
+        data_slice = data[i * 1000:(i + 1) * 1000]
+        labels_slice = labels_true[i * 1000:(i + 1) * 1000]
         _, SSE, ARI = jarvis_patrick(data_slice, labels_slice, {'k': best_ari[0], 'smin': best_ari[1]})
         ARIs.append(ARI)
         SSEs.append(SSE)
